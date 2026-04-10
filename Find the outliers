@@ -1,0 +1,11 @@
+SELECT
+    -- Calculate TotalRideHours using SUM() and DATEDIFF()
+    SUM(DATEDIFF(second, StartDate, EndDate)) / 3600 AS TotalRideHours,
+    -- Select the DATE portion of StartDate
+    CONVERT(DATE, StartDate) AS DateOnly,
+    -- Select the WEEKDAY
+    DATENAME(weekday, CONVERT(DATE, StartDate)) AS DayOfWeek
+FROM CapitalBikeShare
+-- Only include Saturday
+WHERE DATENAME(weekday, StartDate) = 'Saturday'
+GROUP BY CONVERT(DATE, StartDate);
