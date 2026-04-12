@@ -1,0 +1,21 @@
+-- Declare @RideDates
+DECLARE @RideDates TABLE (
+    -- Define RideStart column
+    RideStart DATE, 
+    -- Define RideEnd column
+    RideEnd DATE
+)
+
+-- Populate @RideDates
+INSERT INTO @RideDates(RideStart, RideEnd)
+
+-- Select the unique date values of StartDate and EndDate
+SELECT DISTINCT
+    -- Cast StartDate as date
+    CAST(StartDate AS DATE),
+    -- Cast EndDate as date
+    CAST(EndDate AS DATE) 
+FROM CapitalBikeShare 
+
+SELECT * 
+FROM @RideDates
