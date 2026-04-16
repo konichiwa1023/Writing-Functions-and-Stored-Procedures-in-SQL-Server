@@ -1,0 +1,14 @@
+-- Update SumStationStats
+CREATE OR ALTER FUNCTION dbo.SumStationStats(@EndDate AS date)
+RETURNS TABLE
+WITH SCHEMABINDING
+AS
+RETURN
+SELECT
+    StartStation,
+    COUNT(ID) AS RideCount,
+    SUM(Duration) AS TotalDuration
+FROM dbo.CapitalBikeShare
+-- Cast EndDate as date and compare to @EndDate
+WHERE CAST(EndDate AS date) = @EndDate
+GROUP BY StartStation;
