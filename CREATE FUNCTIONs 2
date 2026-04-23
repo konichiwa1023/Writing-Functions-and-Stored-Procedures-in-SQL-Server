@@ -1,0 +1,13 @@
+-- Start by creating the function
+CREATE FUNCTION dbo.ConvertDollar
+    -- Define the input parameters
+    (@DollarAmt numeric(18,2),
+     @ExchangeRate numeric(18,2))
+-- Specify the return data type
+RETURNS numeric(18,2)
+AS
+BEGIN
+    -- Return the result of multiplying the parameters
+    RETURN
+        (SELECT @ExchangeRate * @DollarAmt)
+END;
